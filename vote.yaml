@@ -24,3 +24,20 @@ spec:
   ports:
     - port: 80
   type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: voting-app 
+spec:
+  rules:
+  - host: voting.local.mikesir87.training
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: voting-app
+            port: 
+              number: 5000
