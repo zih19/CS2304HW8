@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: results-app
+  labels:
+    app: voting-app
+    component: results-app
+spec:
+  containers:
+    - name: results-app
+      image: dockersamples/examplevotingapp_result
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: results-app
+spec:
+  selector:
+    app: voting-app
+    component: results-app
+  ports:
+    - port: 80
+  type: NodePort

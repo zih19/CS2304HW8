@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: voting-app
+  labels:
+    app: voting-app
+    component: voting-app
+spec:
+  containers:
+    - name: voting-app
+      image: dockersamples/examplevotingapp_vote:before
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: voting-app
+spec:
+  selector:
+    app: voting-app
+    component: voting-app
+  ports:
+    - port: 80
+  type: NodePort
